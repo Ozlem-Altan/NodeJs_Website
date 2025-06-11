@@ -4,6 +4,7 @@ const app = express();
 
 app.set("view engine","ejs"); // ejs kullandığımız iin ejs olarak tanımladık
 app.use(express.static('public'));
+app.use(express.static('node_modules'));
 
 
 const data =[
