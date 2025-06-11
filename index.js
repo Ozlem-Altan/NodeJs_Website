@@ -1,32 +1,13 @@
 
 const express = require("express");
 const app = express();
+const useRoutes = require("./routes/users");
 
 app.set("view engine","ejs"); // ejs kullandığımız iin ejs olarak tanımladık
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
-
-const data =[
-    {id:1, name:"iphone 13",price:30000, isActive:true, imageUrl:"1.jpg"},
-    {id:2, name:"iphone 14",price:40000, isActive:false, imageUrl:"2.jpg"},
-    {id:3, name:"iphone 15",price:50000, isActive:true, imageUrl:"3.jpg"},
-];
-
-// routes : Detay sayfası hazırlayacağımız zaman kullanacağımız yapı
-app.use("/products/:id", function(req,res){
-    const choosenproduct = data.find(u => u.id== req.params.id);
-    res.render("product_detail",choosenproduct);
-});
-
-app.use("/products", function(req,res){
-    res.render("products",{
-        products: data
-    });
-});
-app.use("/", function(req,res){
-     res.render("index");
-});
+app.use(useRoutes); // kullandığımız routes sayflaama işlemlerini başka bir yerde tanımlayarak sonra projeye export edebiliriz
 
 app.listen(3000, () =>{
     console.log("listening on port 3000");

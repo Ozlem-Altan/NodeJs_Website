@@ -2,10 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">  
+
     <title>Document</title>
 </head>
 <body>
+<%- include('partials/nav') %>
+
+  <div class="container mt-3"> <!-- container ile içerikleri ortalar  mt-3 ile üst kısımdan biraz boşluk bıraktık-->
     <h1>Anasayfa</h1>
+    <div class="row">
+        <div class="col-12">
+
+            <% products.forEach(product => { %>
+            
+                <% if (product.ISHOME) { %>
+                    <%- include('partials/product',product) %> <!-- partials view kullanarak view yapısını böldük bu yapıyı heryerde kullanabiliriz o yüzden sürekli yazmaktansa böldük diğer kısımlarda bu partial view i kullanacağız. İkinci parametre olarak kullanacağımız data bilgisini gönderiyoruz-->
+                <% } %>               
+                
+            <% }) %>
+            
+        </div>
+    </div>
+  </div>
 </body>
 </html>
